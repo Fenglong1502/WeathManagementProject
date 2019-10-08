@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/style.css"/>
+        <h:outputStylesheet name="./css/bootstrap.min.css"/>
+        <h:outputStylesheet name="./css/docs.min.css"/>
+        <h:outputStylesheet name="./css/owl.carousel.min.css"/>
+        <h:outputStylesheet name="./css/owl.theme.default.min.css"/>
+        <h:outputStylesheet name="./css/aos.css"/>
+        <h:outputStylesheet name="./css/jquery.fancybox.min.css"/>
+        <h:outputStylesheet name="./css/bootstrap-datepicker.css"/>
+
+
+        <title>Wealth Management</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+                <a class="navbar-brand mr-0 mr-md-2" href="#" aria-label="Bootstrap">
+                    <img src="images/logo.png" width="350" height="100" />
+                </a>
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+                    <li class="nav-item" style="color: white">
+                        UserName
+                    </li>
+                </ul>
+                <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="#">Logout</a>
+            </header>
+
+            <!--<ui:insert name="top">Top</ui:insert>-->
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">Content</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
