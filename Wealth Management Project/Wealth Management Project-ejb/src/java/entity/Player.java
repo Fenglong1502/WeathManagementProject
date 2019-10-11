@@ -42,7 +42,7 @@ public class Player implements Serializable {
     private String riskAppetite;
 
     @OneToMany
-    private List<Expenses> expnesesList;
+    private List<Expenses> expensesList;
     @OneToMany
     private List<Income> incomeList;
     @OneToMany
@@ -148,14 +148,14 @@ public class Player implements Serializable {
         this.riskAppetite = riskAppetite;
     }
 
-    public List<Expenses> getExpnesesList() {
-        return expnesesList;
+    public List<Expenses> getExpensesList() {
+        return expensesList;
     }
 
-    public void setExpnesesList(List<Expenses> expnesesList) {
-        this.expnesesList = expnesesList;
+    public void setExpensesList(List<Expenses> expensesList) {
+        this.expensesList = expensesList;
     }
-
+    
     public List<Income> getIncomeList() {
         return incomeList;
     }
@@ -212,5 +212,4 @@ public class Player implements Serializable {
     public String toString() {
         return "entity.Player[ playerID=" + playerID + " ]";
     }
-
 }

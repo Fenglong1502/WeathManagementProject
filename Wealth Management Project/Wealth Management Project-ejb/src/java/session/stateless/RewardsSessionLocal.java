@@ -5,6 +5,9 @@
  */
 package session.stateless;
 
+import entity.Rewards;
+import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface RewardsSessionLocal {
+
+    public Rewards createRewards(Rewards reward) throws NoResultException;
+
+    public List<Rewards> retrieveRewardsByPlayerId(Long playerId) throws NoResultException;
+
+    public Rewards retrieveRewardById(Long rewardId) throws NoResultException;
+
+    public void updateRewards(Rewards reward) throws NoResultException;
+
+    public void deleteRewards(Long rewardId) throws NoResultException;
     
 }
