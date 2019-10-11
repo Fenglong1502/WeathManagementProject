@@ -5,6 +5,9 @@
  */
 package session.stateless;
 
+import entity.Expenses;
+import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface ExpensesSessionLocal {
+
+    public List<Expenses> retrieveUserExpenses(Long userId) throws NoResultException;
+
+    public Expenses retrieveExpenseById(Long id) throws NoResultException;
+
+    public Long createExpenses(Expenses newExpenses);
+
+    public void updateExpenses(Expenses expense) throws NoResultException;
+
+    public void deleteExpense(Long id) throws NoResultException;
     
 }
