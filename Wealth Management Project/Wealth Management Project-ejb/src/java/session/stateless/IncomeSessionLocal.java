@@ -5,6 +5,9 @@
  */
 package session.stateless;
 
+import entity.Income;
+import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,5 +16,15 @@ import javax.ejb.Local;
  */
 @Local
 public interface IncomeSessionLocal {
+
+    public List<Income> retrieveUserIncome(Long userId) throws NoResultException;
+
+    public Income retrieveIncomeById(Long id) throws NoResultException;
+
+    public Long createIncome(Income newIncome);
+
+    public void updateIncome(Income income) throws NoResultException;
+
+    public void deleteIncome(Long id) throws NoResultException;
     
 }
