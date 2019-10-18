@@ -34,7 +34,7 @@ public class ExpensesSession implements ExpensesSessionLocal {
             query.setParameter("inPlayerID", userId);
             Player player = (Player) query.getSingleResult();
 
-            return player.getExpnesesList();
+            return player.getExpensesList();
         } catch (Exception ex) {
             throw new NoResultException("Player's expenses cannot be retrieved: "+ex);
         }

@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./layout/default.xhtml">
+
+            <ui:define name="content">
+                <!--                <div class="row">
+                                    
+                                   <div class="col-x">
+                                    
+                                </div>-->
+                <h5 class="ml-5 mr-5 mt-4 mb-2">Bonds</h5>
+
+                <div class="row ml-5 mr-5">
+                    <div class="col-12">
+                        <!-- Custom Tabs -->
+                        <div class="card">
+                            <div class="card-header d-flex p-0">
+                                <ul class="nav nav-pills p-2">
+                                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Low</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Medium</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">High</a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+
+
+
+
+
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+
+                                        <h:form>
+                                            <c:forEach items="#{bondsManagedBean.lowRiskBonds}" var="b"> 
+                                                <div class="box-body">
+                                                    <div class="box box-success">
+                                                        <div class="box-header with-border">
+                                                            <h2>#{b.issueCode}</h2>
+                                                        </div>
+                                                        <div class="row mt-2 mb-2">
+                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-6">
+                                                                <p>Bond Name: #{b.bondName}</p>
+                                                                <p>Bond Issuer : #{b.bondIssuer}</p>
+                                                                <p>CR Moody: #{b.crMoodyBond}</p>
+                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Currency: #{b.currency}</p>
+                                                                <p>Issue Date: #{b.issueDate}</p>
+                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
+                                                                <p>Yeild To Maturity: #{b.yieldToMaturity}</p>                                                            
+                                                            </div>
+                                                            <div class="col-1"></div>
+                                                            <div class="col-1">
+                                                                <h2 class="text-success"> + 0.5% </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </c:forEach>
+                                        </h:form>
+
+                                    </div>
+
+                                    <!-- /.tab-pane -->
+
+
+                                    <div class="tab-pane" id="tab_2">
+
+                                        <h:form>
+                                            <c:forEach items="#{bondsManagedBean.mediumRiskBonds}" var="b"> 
+                                                <div class="box-body">
+                                                    <div class="box box-warning">
+                                                        <div class="box-header with-border">
+                                                            <h2>#{b.issueCode}</h2>
+                                                        </div>
+                                                        <div class="row mt-2 mb-2">
+                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-6">
+                                                                <p>Bond Name: #{b.bondName}</p>
+                                                                <p>Bond Issuer : #{b.bondIssuer}</p>
+                                                                <p>CR Moody: #{b.crMoodyBond}</p>
+                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Currency: #{b.currency}</p>
+                                                                <p>Issue Date: #{b.issueDate}</p>
+                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
+                                                                <p>Yeild To Maturity: #{b.yieldToMaturity}</p>                                                            
+                                                            </div>
+                                                            <div class="col-1"></div>
+                                                            <div class="col-1">
+                                                                <h2 class="text-success"> + 0.5% </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </c:forEach>
+                                        </h:form>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_3">
+                                        <h:form>
+                                            <c:forEach items="#{bondsManagedBean.highRiskBonds}" var="b"> 
+                                                <div class="box-body">
+                                                    <div class="box box-danger">
+                                                        <div class="box-header with-border">
+                                                            <h2>#{b.issueCode}</h2>
+                                                        </div>
+                                                        <div class="row mt-2 mb-2">
+                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-6">
+                                                                <p>Bond Name: #{b.bondName}</p>
+                                                                <p>Bond Issuer : #{b.bondIssuer}</p>
+                                                                <p>CR Moody: #{b.crMoodyBond}</p>
+                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Currency: #{b.currency}</p>
+                                                                <p>Issue Date: #{b.issueDate}</p>
+                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
+                                                                <p>Yeild To Maturity: #{b.yieldToMaturity}</p>                                                            
+                                                            </div>
+                                                            <div class="col-1"></div>
+                                                            <div class="col-1">
+                                                                <h2 class="text-success"> + 0.5% </h2>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </c:forEach>
+                                        </h:form>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+                        <!-- ./card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+
+
+
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -22,10 +22,10 @@ public class BondSession implements BondSessionLocal {
 
     @PersistenceContext(unitName = "Wealth_Management_Project-ejbPU")
     private EntityManager em;
-    
+
     public BondSession() {
     }
-    
+
     @Override
     public List<Bond> retrieveAllBonds() throws NoResultException {
         try {
@@ -34,10 +34,36 @@ public class BondSession implements BondSessionLocal {
 
             return bonds;
         } catch (Exception ex) {
-            throw new NoResultException("Bonds cannot be retrieved: "+ex);
+            throw new NoResultException("Bonds cannot be retrieved: " + ex);
         }
     }
-    
+
+    @Override
+    public List<Bond> retrieveAllLowRiskBonds(){
+        Query query = em.createQuery("SELECT b FROM Bond b WHERE LOWER(b.crMoodyBond) like 'a%'");
+        List<Bond> bonds = query.getResultList();
+
+        return bonds;
+    }
+
+    @Override
+    public List<Bond> retrieveAllMediumRiskBonds() {
+        Query query = em.createQuery("SELECT b FROM Bond b WHERE LOWER(b.crMoodyBond) like 'b%'");
+        List<Bond> bonds = query.getResultList();
+
+        return bonds;
+
+    }
+
+    @Override
+    public List<Bond> retrieveAllHighRiskBonds(){
+        Query query = em.createQuery("SELECT b FROM Bond b WHERE LOWER(b.crMoodyBond) like 'c%'");
+        List<Bond> bonds = query.getResultList();
+
+        return bonds;
+
+    }
+
     @Override
     public Bond retrieveBondById(Long id) throws NoResultException {
         try {
@@ -45,10 +71,10 @@ public class BondSession implements BondSessionLocal {
             query.setParameter("inBondID", id);
             return (Bond) query.getSingleResult();
         } catch (Exception ex) {
-            throw new NoResultException("Bond "+id+"cannot be retrieved: "+ex);
+            throw new NoResultException("Bond " + id + "cannot be retrieved: " + ex);
         }
     }
-    
+
     @Override
     public Long createBond(Bond newBond) {
         em.persist(newBond);
@@ -56,10 +82,10 @@ public class BondSession implements BondSessionLocal {
         em.refresh(newBond);
         return newBond.getBondID();
     }
-    
+
     @Override
     public void updateBond(Bond bond) throws NoResultException {
-        if (bond.getBondID()!= null) {
+        if (bond.getBondID() != null) {
             Bond updateBond = retrieveBondById(bond.getBondID());
             updateBond.setBondIssuer(bond.getBondIssuer());
             updateBond.setBondName(bond.getBondName());
@@ -78,7 +104,7 @@ public class BondSession implements BondSessionLocal {
             throw new NoResultException("No such bond to update. ");
         }
     }
-    
+
     @Override
     public void deleteBond(Long id) throws NoResultException {
         if (id != null) {
