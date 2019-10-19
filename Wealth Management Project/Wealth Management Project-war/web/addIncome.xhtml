@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./layout/default.xhtml">
+            <ui:define name="content">
+
+                <section class="content"> 
+                    <div class="container-fluid">
+
+                        <!-- Horizontal Form -->
+                        <div class="box box-info">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Add Income</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <div class="row">
+                                <div class="col-4">.</div>
+                                <div class="col-4">
+                                    <form class="form-horizontal">
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label>Income Activity: </label>
+                                                <input type="text" class="form-control" placeholder="Enter ..."/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date masks:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control pull-right" id="datepicker" />
+                                                </div>
+                                                <!-- /.input group -->
+                                            </div>
+
+
+                                            <!-- /.input group -->
+                                            <div class="form-group">
+                                                <label>Income Amount: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-default">Cancel</button>
+                                            <button type="submit" class="btn btn-info pull-right">Add</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+                                </div>
+                                <div class="col-4"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

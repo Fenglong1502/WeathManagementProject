@@ -25,19 +25,48 @@ public class Bond implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long bondID;
-    private String bondName;
+    private String issueCode;
     private String bondIssuer;
-    private String bondType;
-    private String investmentDate;
-    @Temporal(TemporalType.DATE)
-    private Date maturityDate;
-    private double yieldToMaturity;
-    private double interestPayable;
+    private String bondName;
+    private String bondSuitability;
+    private String crMoodyBond;
     private double coupon;
-    @Temporal(TemporalType.DATE)
-    private Date issueDate;
     private String currency;
     private double minInvestmentAmount;
+    @Temporal(TemporalType.DATE)
+    private Date issueDate;
+    private double yieldToMaturity;
+    @Temporal(TemporalType.DATE)
+    private Date maturityDate;
+    private double latestYieldToMaturity;
+
+    private String bondType;
+    private String investmentDate;
+    private double interestPayable;
+
+    public Bond(){
+        
+    }
+    
+    public Bond(String issueCode, String bondIssuer, String bondName, String bondSuitability, String crMoodyBond, double coupon, String currency, double minInvestmentAmount, Date issueDate, double yieldToMaturity, Date maturityDate, double latestYieldToMaturity, String bondType, String investmentDate, double interestPayable) {
+        this.issueCode = issueCode;
+        this.bondIssuer = bondIssuer;
+        this.bondName = bondName;
+        this.bondSuitability = bondSuitability;
+        this.crMoodyBond = crMoodyBond;
+        this.coupon = coupon;
+        this.currency = currency;
+        this.minInvestmentAmount = minInvestmentAmount;
+        this.issueDate = issueDate;
+        this.yieldToMaturity = yieldToMaturity;
+        this.maturityDate = maturityDate;
+        this.latestYieldToMaturity = latestYieldToMaturity;
+        this.bondType = bondType;
+        this.investmentDate = investmentDate;
+        this.interestPayable = interestPayable;
+    }
+
+   
 
     public Long getBondID() {
         return bondID;
@@ -133,6 +162,38 @@ public class Bond implements Serializable {
 
     public void setMinInvestmentAmount(double minInvestmentAmount) {
         this.minInvestmentAmount = minInvestmentAmount;
+    }
+
+    public String getIssueCode() {
+        return issueCode;
+    }
+
+    public void setIssueCode(String issueCode) {
+        this.issueCode = issueCode;
+    }
+
+    public String getBondSuitability() {
+        return bondSuitability;
+    }
+
+    public void setBondSuitability(String bondSuitability) {
+        this.bondSuitability = bondSuitability;
+    }
+
+    public String getCrMoodyBond() {
+        return crMoodyBond;
+    }
+
+    public void setCrMoodyBond(String crMoodyBond) {
+        this.crMoodyBond = crMoodyBond;
+    }
+
+    public double getLatestYieldToMaturity() {
+        return latestYieldToMaturity;
+    }
+
+    public void setLatestYieldToMaturity(double latestYieldToMaturity) {
+        this.latestYieldToMaturity = latestYieldToMaturity;
     }
 
     @Override

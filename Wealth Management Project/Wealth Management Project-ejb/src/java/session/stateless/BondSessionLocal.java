@@ -18,6 +18,12 @@ import javax.ejb.Local;
 public interface BondSessionLocal {
 
     public List<Bond> retrieveAllBonds() throws NoResultException;
+    
+    public List<Bond> retrieveAllLowRiskBonds();
+    
+    public List<Bond> retrieveAllMediumRiskBonds();
+    
+    public List<Bond> retrieveAllHighRiskBonds();
 
     public Bond retrieveBondById(Long id) throws NoResultException;
 

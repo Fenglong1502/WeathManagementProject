@@ -8,11 +8,358 @@
         <ui:composition template="./layout/default.xhtml">
 
             <ui:define name="top">
-                top
+
             </ui:define>
 
             <ui:define name="content">
-                content
+                <section class="content"> 
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <section class="connectedSortable">
+                                    <!-- Custom tabs (Charts with tabs)-->
+                                    <div class="card">
+                                        <div class="box box-success">
+                                            <div class="box-header with-border">
+                                                <h3 class="box-title">Income</h3>
+                                            </div>
+
+                                        </div><!-- /.card-header -->
+                                        <div class="card-body">
+                                            <div class="tab-content p-0">
+                                                <div class="box-body border-radius-none">
+                                                    <canvas id="canvas" class="chart tab-pane active" style="position: relative; height: 300px;"></canvas>
+                                                </div>
+                                                <!-- Morris chart - Sales -->
+
+                                                <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+                                            </div>
+                                        </div><!-- /.card-body -->
+                                    </div>
+                                </section>
+
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="box box-danger">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Expenses</h3>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+
+                                                <div class="col-md-8">
+                                                    <div class="chart-responsive">
+                                                        <canvas id="chart-area" style="position: relative; height: 300px;"></canvas>
+                                                    </div>
+                                                    <!-- ./chart-responsive -->
+                                                </div>
+                                                <!-- /.col -->
+                                                <div class="col-md-4">
+                                                    <ul class="chart-legend clearfix">
+                                                        <li><i class="fa fa fa-circle-o text-red"></i> Food</li>
+                                                        <li><i class="fa fa-circle-o text-green"></i> Transport</li>
+                                                        <li><i class="fa fa-circle-o text-aqua"></i> Entertainment</li>
+                                                        <li><i class="fa fa-circle-o text-yellow"></i> Others</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="box box-primary">
+                                                <div class="box-header with-border">
+                                                    <h3 class="box-title">Bar Chart</h3>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="chart">
+                                                        <canvas id="barChart" style="height:230px"></canvas>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-body -->
+                                            </div>
+                                            <!-- /.box -->
+
+                                        </div>
+
+
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Ranking Board</h3>
+
+                                        <div class="box-tools">
+                                            <ul class="pagination pagination-sm pull-right">
+                                                <li><a href="#">Income</a></li>
+                                                <li><a href="#">Saving</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Player Name</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1.</td>
+                                                <td>John</td>
+                                                <td><span class="badge bg-green">$9999.99</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>2.</td>
+                                                <td>Peter</td>
+                                                <td><span class="badge bg-teal">$8888.88</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>3.</td>
+                                                <td>Ah Huat</td>
+                                                <td><span class="badge bg-yellow">$7777.77</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>4.</td>
+                                                <td>Ah Lian</td>
+                                                <td><span class="badge bg-gray-active">$6666.66</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>5.</td>
+                                                <td>Ah Hui</td>
+                                                <td><span class="badge bg-gray-active">$5555.55</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>6.</td>
+                                                <td>Moe Lester</td>
+                                                <td><span class="badge">$4444.44</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>7.</td>
+                                                <td>Batman bin Suparman</td>
+                                                <td><span class="badge">$3333.33</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>8.</td>
+                                                <td>Edmund James</td>
+                                                <td><span class="badge">$2222.22</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>9.</td>
+                                                <td>Steven Lim</td>
+                                                <td><span class="badge">$1111.11</span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>10.</td>
+                                                <td>Ah Hui</td>
+                                                <td><span class="badge">$9999.99</span></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+                        </div> <!-- End of Top Row -->
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <h3 class="">Recommendations </h3>
+                            </div>
+                        </div><!-- /.card-header -->
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3>2.63<sup style="font-size: 20px">% Increase</sup></h3>
+
+                                        <p>Bond ABC</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">
+                                        More info <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-green">
+                                    <div class="inner">
+                                        <h3>1.23<sup style="font-size: 20px">% Increase</sup></h3>
+
+                                        <p>Bond 123</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">
+                                        More info <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3>0.36<sup style="font-size: 20px">% Decrease</sup></h3>
+
+                                        <p>Bond 987</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">
+                                        More info <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-red">
+                                    <div class="inner">
+                                        <h3>18<sup style="font-size: 20px">% Increase</sup></h3>
+
+                                        <p>Bond ZYX</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-stats-bars"></i>
+                                    </div>
+                                    <a href="#" class="small-box-footer">
+                                        More info <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- /.col -->
+
+                        </div>
+                    </div>
+                </section>
+
+
+                <script>
+                    var randomScalingFactor = function () {
+                        return Math.round(Math.random() * 100)
+                    };
+
+                    var lineChartData = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        datasets: [
+                            {
+                                label: "My First dataset",
+                                fillColor: "rgba(0, 105, 217,0.2)",
+                                strokeColor: "rgba(0,105,217,0.5)",
+                                pointColor: "#fff",
+                                pointStrokeColor: "#0069d9 ",
+                                pointHighlightFill: "#0069d9 ",
+                                pointHighlightStroke: "#0069d9 ",
+                                borderColor: "rgba(255,0,255,0)",
+                                data: [100, 500, 200, 800, 0, 0, 0, 0, 0, 0, 0, 0]
+                            }
+                        ],
+                        options: {
+                            showLines: false,
+                            legend: {
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    fontColor: '#FFF'
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                        ticks: {
+                                            fontColor: 'red'
+                                        }
+                                    }]
+                            }
+                        }
+
+
+                    }
+
+                    var barChartData = {
+                        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                        datasets: [
+                            {
+                                fillColor: "rgba(243,156,18,0.5)",
+                                strokeColor: "rgba(243,156,18,0.8)",
+                                highlightFill: "rgba(243,156,18,0.75)",
+                                highlightStroke: "rgba(243,156,18,1)",
+                                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                            }
+                        ]
+
+                    }
+
+
+                    var doughnutData = [
+                        {
+                            value: 620,
+                            color: "#FF0000",
+                            highlight: "#FF0000",
+                            label: "Food"
+                        },
+                        {
+                            value: 120,
+                            color: "#00ff00",
+                            highlight: "#00ff00",
+                            label: "Transport"
+                        },
+                         {
+                            value: 300,
+                            color: "#00c0ef",
+                            highlight: "#00c0ef",
+                            label: "Entertainment"
+                        },
+                        {
+                            value: 480,
+                            color: "#f39c12",
+                            highlight: "#f39c12",
+                            label: "Others"
+                        }
+                       
+                    ];
+
+
+
+                    window.onload = function () {
+                        var ctx = document.getElementById("canvas").getContext("2d");
+                        window.myLine = new Chart(ctx).Line(lineChartData, {
+                            responsive: true
+                        });
+                        var dnt = document.getElementById("chart-area").getContext("2d");
+                        window.myDoughnut = new Chart(dnt).Doughnut(doughnutData, {responsive: true});
+                        console.log(window.myLine);
+
+                        var bar = document.getElementById("barChart").getContext("2d");
+                        window.myBar = new Chart(bar).Bar(barChartData, {
+                            responsive: true
+                        });
+                    }
+
+
+                </script>
+
+
+
             </ui:define>
 
         </ui:composition>
