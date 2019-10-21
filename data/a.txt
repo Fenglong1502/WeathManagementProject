@@ -1,21 +1,3 @@
--- sql generated using http://convertjson.com/json-to-sql.htm
--- go to https://secure.fundsupermart.com/fsm/bonds/factsheet/<issueCode> to see the page of the bond
--- moody ratings refer to https://en.wikipedia.org/wiki/Bond_credit_rating#Credit_rating_codes_and_classes
--- all moody ratings in this dataset: Aaa, Aa1, Aa2, Aa3, A1, A2, A3, Baa1, Baa2, Baa3, Ba1, Ba2, Ba3, B1, B2, B3, Caa1, Caa2, N.R, W.R
-CREATE TABLE mytable(
-   issueCode                VARCHAR(12) NOT NULL PRIMARY KEY -- the id
-  ,bondIssuer               VARCHAR(95) NOT NULL -- company name
-  ,bondName                 VARCHAR(99) NOT NULL -- bond name
-  ,bondSuitability          VARCHAR(8) NOT NULL -- possible values: SISEEKER = stable income seeker, HYSEEKER = high yield seeker, FDALT = fixed deposit alternative
-  ,crMoodyBond              VARCHAR(4) NOT NULL -- moody rating
-  ,couponRate               NUMERIC(6,4) NOT NULL -- coupon rate
-  ,bondCurrencyCode         VARCHAR(3) NOT NULL -- 3 letter currency, possible values: USD, SGD, AUD, CNH, GBP, EUR, HKD
-  ,minInitialAmt            INTEGER  NOT NULL -- minimum investment amount, lowest of all is 1000
-  ,issueDate                INTEGER  NOT NULL -- issue date (miliseconds since epoch)
-  ,issueYield               NUMERIC(8,6) NOT NULL -- seems to be same or slight offset as coupon rate, not sure why
-  ,maturityDate             INTEGER  NOT NULL -- maturity date (miliseconds since epoch), those with maturity date > 6000000000000 are "perpetual"
-  ,latestBidYieldToMaturity NUMERIC(9,6) NOT NULL -- estimated yield to maturity as of 3 oct 2019
-);
 INSERT INTO mytable(issueCode,bondIssuer,bondName,bondSuitability,crMoodyBond,couponRate,bondCurrencyCode,minInitialAmt,issueDate,issueYield,maturityDate,latestBidYieldToMaturity) VALUES ('XS0483583737','Dah Sing Bank Ltd','DAHSIN 6.625% 11Feb2020 Corp (USD)','SISEEKER','Baa1',6.625,'USD',100000,'10-02-2010',6.625,'10-02-2020',2.823);
 INSERT INTO mytable(issueCode,bondIssuer,bondName,bondSuitability,crMoodyBond,couponRate,bondCurrencyCode,minInitialAmt,issueDate,issueYield,maturityDate,latestBidYieldToMaturity) VALUES ('USF8586CRW49','Societe Generale SA','SOCGEN 7.875% Perpetual Corp (USD)','HYSEEKER','Ba2',7.875,'USD',200000,'17-12-2013',7.875,'17-12-2165',6.439265);
 INSERT INTO mytable(issueCode,bondIssuer,bondName,bondSuitability,crMoodyBond,couponRate,bondCurrencyCode,minInitialAmt,issueDate,issueYield,maturityDate,latestBidYieldToMaturity) VALUES ('XS1809230474','Sunac China Holdings Ltd','SUNAC 7.350% 19Jul2021 Corp (USD)','HYSEEKER','B1',7.35,'USD',200000,'18-04-2018',7.35,'18-07-2021',7.333666);
