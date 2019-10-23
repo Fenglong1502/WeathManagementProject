@@ -98,6 +98,9 @@ public class BondSession implements BondSessionLocal {
             updateBond.setMaturityDate(bond.getMaturityDate());
             updateBond.setMinInvestmentAmount(bond.getMinInvestmentAmount());
             updateBond.setYieldToMaturity(bond.getYieldToMaturity());
+            updateBond.setBondSuitability(bond.getBondSuitability());
+            updateBond.setCrMoodyBond(bond.getCrMoodyBond());
+            updateBond.setLatestYieldToMaturity(bond.getLatestYieldToMaturity());
             em.flush();
             em.refresh(updateBond);
         } else {

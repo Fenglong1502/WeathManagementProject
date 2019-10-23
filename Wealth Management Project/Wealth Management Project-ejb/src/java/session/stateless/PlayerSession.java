@@ -79,6 +79,14 @@ public class PlayerSession implements PlayerSessionLocal {
                 playerToUpdate.setLastLogin(playerToUpdate.getLastLogin());
                 playerToUpdate.setConsecutiveLogin(playerToUpdate.getConsecutiveLogin());
                 playerToUpdate.setRiskAppetite(playerToUpdate.getRiskAppetite());
+                playerToUpdate.setExpensesList(player.getExpensesList());
+                playerToUpdate.setIncomeList(player.getIncomeList());
+                playerToUpdate.setJoinedDate(player.getJoinedDate());
+                playerToUpdate.setRecommendedBonds(player.getRecommendedBonds());
+                playerToUpdate.setRewardsList(player.getRewardsList());
+                playerToUpdate.setTrackedBonds(player.getTrackedBonds());
+                em.flush();
+                em.refresh(playerToUpdate);
             } else {
                 throw new NoResultException("ID not provided for player information to be updated");
             }

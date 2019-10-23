@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
@@ -51,6 +52,28 @@ public class Player implements Serializable {
     private List<Bond> trackedBonds;
     @OneToMany
     private List<Bond> recommendedBonds;
+
+    public Player() {
+    }
+
+    public Player(String email, String password) {
+        this.email = email;
+        this.password = password;
+        this.joinedDate = new Date();
+        this.points = 0;
+        this.firstName = "mr";
+        this.lastName = "tester";
+        this.accountStatus = true;
+        this.gender = "gay";
+        this.lastLogin = new Date();
+        this.consecutiveLogin = 1;
+        this.riskAppetite = "";
+        this.expensesList = new ArrayList<Expenses>();
+        this.incomeList = new ArrayList<Income>();
+        this.rewardsList = new ArrayList<Rewards>();
+        this.trackedBonds = new ArrayList<Bond>();
+        this.recommendedBonds = new ArrayList<Bond>();
+    }
 
     public Long getPlayerID() {
         return playerID;
