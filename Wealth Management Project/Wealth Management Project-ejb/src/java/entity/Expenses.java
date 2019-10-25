@@ -34,6 +34,13 @@ public class Expenses implements Serializable {
     public Expenses(){
         
     }
+
+    public Expenses(String type, String name, double amount, Date dateTransact) {
+        this.type = type;
+        this.name = name;
+        this.amount = amount;
+        this.dateTransact = dateTransact;
+    }
     
     public Long getExpensesID() {
         return expensesID;

@@ -30,6 +30,17 @@ public class Income implements Serializable {
     private Date dateOfIncome;
     private double amount;
 
+    public Income(){
+        
+    }
+
+    public Income(String name, Date dateOfIncome, double amount) {
+        this.name = name;
+        this.dateOfIncome = dateOfIncome;
+        this.amount = amount;
+    }
+   
+    
     public Long getIncomeID() {
         return incomeID;
     }

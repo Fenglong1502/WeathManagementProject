@@ -32,12 +32,12 @@
                                                 <h:inputText class="form-control" a:placeholder="Enter ..." value="#{bondsManagedBean.incomeActivity}"/>
                                             </div>
                                             <div class="form-group">
-                                                <label>Date masks:</label>
+                                                <label>Date: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
-                                                    <h:inputText class="form-control pull-right" id="datepicker" value="#{bondsManagedBean.incomeDate}" />
+                                                    <h:inputText a:type="date" a:data-date-format="DD/MM/YYYY" class="form-control pull-right" id="datepicker" required="required" value="#{bondsManagedBean.incomeDate}"/>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
@@ -56,7 +56,7 @@
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-default">Cancel</button>
+                                            <a href="index.xhtml" class="btn btn-default">Cancel</a>
                                             <h:commandButton action="#{bondsManagedBean.addIncome()}"  value="Add" class="btn btn-info pull-right"></h:commandButton>
                                         </div>
                                         <!-- /.box-footer -->

@@ -52,7 +52,7 @@ public class IncomeSession implements IncomeSessionLocal {
 
     @Override
     public Long createIncome(Income newIncome) {
-        newIncome.setDateOfIncome(new java.util.Date());
+//        newIncome.setDateOfIncome(new java.util.Date());
         em.persist(newIncome);
         em.flush();
         em.refresh(newIncome);

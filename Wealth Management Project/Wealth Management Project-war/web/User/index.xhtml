@@ -272,7 +272,7 @@
                                 pointHighlightFill: "#0069d9 ",
                                 pointHighlightStroke: "#0069d9 ",
                                 borderColor: "rgba(255,0,255,0)",
-                                data: [100, 500, 200, 800, 0, 0, 0, 0, 0, 0, 0, 0]
+                                data: [#{bondsManagedBean.getUserIncomeByMonth(1)}, #{bondsManagedBean.getUserIncomeByMonth(2)}, #{bondsManagedBean.getUserIncomeByMonth(3)}, #{bondsManagedBean.getUserIncomeByMonth(4)}, #{bondsManagedBean.getUserIncomeByMonth(5)}, #{bondsManagedBean.getUserIncomeByMonth(6)}, #{bondsManagedBean.getUserIncomeByMonth(7)}, #{bondsManagedBean.getUserIncomeByMonth(8)}, #{bondsManagedBean.getUserIncomeByMonth(9)}, #{bondsManagedBean.getUserIncomeByMonth(10)}, #{bondsManagedBean.getUserIncomeByMonth(11)}, #{bondsManagedBean.getUserIncomeByMonth(12)}]
                             }
                         ],
                         options: {
@@ -312,25 +312,25 @@
 
                     var doughnutData = [
                         {
-                            value: 620,
+                            value: #{bondsManagedBean.getUserExpensesByMonth("Food")},
                             color: "#FF0000",
                             highlight: "#FF0000",
                             label: "Food"
                         },
                         {
-                            value: 120,
+                            value: #{bondsManagedBean.getUserExpensesByMonth("Transport")},
                             color: "#00ff00",
                             highlight: "#00ff00",
                             label: "Transport"
                         },
                          {
-                            value: 300,
+                            value: #{bondsManagedBean.getUserExpensesByMonth("Entertainment")},
                             color: "#00c0ef",
                             highlight: "#00c0ef",
                             label: "Entertainment"
                         },
                         {
-                            value: 480,
+                            value: #{bondsManagedBean.getUserExpensesByMonth("Others")},
                             color: "#f39c12",
                             highlight: "#f39c12",
                             label: "Others"

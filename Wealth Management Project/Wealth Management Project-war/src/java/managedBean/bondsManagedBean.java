@@ -8,12 +8,15 @@ package managedBean;
 import entity.Bond;
 import entity.Expenses;
 import entity.Income;
+import entity.Player;
 import error.NoResultException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,22 +96,64 @@ public class bondsManagedBean implements Serializable {
     public String addIncome() throws ParseException, NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+
         
         Income i = new Income();
         i.setName(incomeActivity);
-        i.setDateOfIncome(new SimpleDateFormat("dd/MM/yyyy").parse(incomeDate));
+        System.out.println(incomeDate);
+            i.setDateOfIncome(new SimpleDateFormat("yyyy-MM-dd").parse(incomeDate));
         i.setAmount(incomeAmount);
-        
+
         long newIncomeID = incomeSessionLocal.createIncome(i);
-        
-        i= incomeSessionLocal.retrieveIncomeById(newIncomeID);
+
+        i = incomeSessionLocal.retrieveIncomeById(newIncomeID);
         playerSessionLocal.addIncome(pid, i);
-        
+
         incomeActivity = null;
         incomeDate = null;
         incomeAmount = 0;
-        
+
         return "index.xhtml?faces-redirect=true";
+    }
+
+    public double getUserIncomeByMonth(int month) throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        Player p1 = playerSessionLocal.retrievePlayerById(pid);
+
+        double incomeOfTheMonth = 0;
+
+        List<Income> playerIncome = p1.getIncomeList();
+        for (Income i : playerIncome) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(i.getDateOfIncome());
+            int checkMonth = cal.get(Calendar.MONTH);
+            if (checkMonth + 1 == month) {
+                incomeOfTheMonth += i.getAmount();
+            }
+        }
+        return incomeOfTheMonth;
+    }
+
+    public double getUserExpensesByMonth(String type) throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        Player p1 = playerSessionLocal.retrievePlayerById(pid);
+
+        double totalExpenses = 0;
+
+        List<Expenses> playerExpenses = p1.getExpensesList();
+        for (Expenses e : playerExpenses) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(e.getDateTransact());
+            int checkMonth = cal.get(Calendar.MONTH);
+            cal.setTime(new java.util.Date());
+            int currentMonth = cal.get(Calendar.MONTH);
+            if ((checkMonth == currentMonth) && (e.getType().equals(type))) {
+                totalExpenses += e.getAmount();
+            }
+        }
+        return totalExpenses;
     }
 
     public bondsManagedBean() {

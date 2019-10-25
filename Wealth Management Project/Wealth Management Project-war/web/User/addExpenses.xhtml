@@ -36,7 +36,7 @@
                                                         <f:selectItem itemValue="Food" itemLabel="Food" />
                                                         <f:selectItem itemValue="Transport" itemLabel="Transport" />
                                                         <f:selectItem itemValue="Entertainment" itemLabel="Entertainment" />
-                                                        <f:selectItem itemValue="Other" itemLabel="Other" />
+                                                        <f:selectItem itemValue="Others" itemLabel="Others" />
                                                     </h:selectOneMenu>
                                                     <span class="focus-input100"></span>
                                                 </div>
@@ -47,7 +47,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
-                                                    <h:inputText class="form-control pull-right" value="#{bondsManagedBean.date}" id="datepicker" required="true"/>
+                                                    <h:inputText a:type="date" class="form-control pull-right" id="datepicker" required="required" value="#{bondsManagedBean.date}"/>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
