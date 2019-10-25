@@ -84,4 +84,11 @@ public class IncomeSession implements IncomeSessionLocal {
         }
     }
 
+    @Override
+    public List<Income> retrieveAllIncome() {
+        Query q;
+        q = em.createQuery("SELECT i FROM Income i");
+        return q.getResultList();
+    }
+
 }

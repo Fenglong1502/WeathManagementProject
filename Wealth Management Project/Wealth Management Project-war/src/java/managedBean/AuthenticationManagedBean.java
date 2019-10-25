@@ -72,7 +72,18 @@ public class AuthenticationManagedBean implements Serializable {
     public AuthenticationManagedBean() {
 
     }
- public String register() throws IOException, NoResultException {
+
+    public String cancelRegister() {
+        firstName = null;
+        lastName = null;
+        email = null;
+        password = null;
+        confirmPassword = null;
+
+        return "login.xhtml?faces-redirect=true";
+    }
+
+    public String register() throws IOException, NoResultException {
 
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         PrintWriter out = response.getWriter();
@@ -86,7 +97,7 @@ public class AuthenticationManagedBean implements Serializable {
             p.setAccountStatus(true);
             p.setPoints(0);
             p.setGender(gender);
-            
+
             p.setJoinedDate(java.util.Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
             playerSessionLocal.createPlayer(p);
 
@@ -95,7 +106,7 @@ public class AuthenticationManagedBean implements Serializable {
             email = null;
             password = null;
             confirmPassword = null;
-            
+
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Register Succesful!');");
             out.println("</script>");
@@ -112,7 +123,7 @@ public class AuthenticationManagedBean implements Serializable {
         }
 
     }
-    
+
     public String login() throws IOException, NoResultException {
         Player p = new Player(email, encryptPassword(password));
 
@@ -120,7 +131,7 @@ public class AuthenticationManagedBean implements Serializable {
         PrintWriter out = response.getWriter();
 
         if (playerSessionLocal.login(p) == true) {
-            if (playerSessionLocal.getPlayerByEmail(email).isAccountStatus()== false) {
+            if (playerSessionLocal.getPlayerByEmail(email).isAccountStatus() == false) {
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Your account has been banned! Please contact the administrator!');");
                 out.println("</script>");
@@ -130,6 +141,7 @@ public class AuthenticationManagedBean implements Serializable {
                 loggedInPlayer = playerSessionLocal.getPlayerByEmail(email);
                 id = loggedInPlayer.getPlayerID();
                 setName(loggedInPlayer.getLastName() + " " + loggedInPlayer.getFirstName());
+                riskAppetite = loggedInPlayer.getRiskAppetite();
 
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('Login Succesfull!');");
@@ -141,6 +153,7 @@ public class AuthenticationManagedBean implements Serializable {
 
             name = null;
             password = null;
+            riskAppetite = null;
             id = -1L;
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Email or password incorrect');");
@@ -220,7 +233,6 @@ public class AuthenticationManagedBean implements Serializable {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-    
 
     public Date getJoinedDate() {
         return joinedDate;
@@ -349,7 +361,5 @@ public class AuthenticationManagedBean implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
+
 }

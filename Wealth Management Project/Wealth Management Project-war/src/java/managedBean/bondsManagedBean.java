@@ -9,15 +9,22 @@ import entity.Bond;
 import entity.Expenses;
 import entity.Income;
 import entity.Player;
+import entity.RankingBoard;
 import error.NoResultException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -80,7 +87,7 @@ public class bondsManagedBean implements Serializable {
         Expenses e = new Expenses();
         e.setType(expenseActivity);
         e.setAmount(expenseAmount);
-        e.setDateTransact(new SimpleDateFormat("dd/MM/yyyy").parse(date));
+        e.setDateTransact(new SimpleDateFormat("yyyy-MM-dd").parse(date));
 
         long newExpenseID = expenseSessionLocal.createExpenses(e);
 
@@ -93,15 +100,58 @@ public class bondsManagedBean implements Serializable {
         return "index.xhtml?faces-redirect=true";
     }
 
+    public List<Bond> getRecommendedBonds() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        Player p = playerSessionLocal.retrievePlayerById(pid);
+
+        List<Bond> returnList = new ArrayList<>();
+        List<Bond> lowRiskBondsList = bondSessionLocal.retrieveAllLowRiskBonds();
+        List<Bond> mediumRiskBondsList = bondSessionLocal.retrieveAllMediumRiskBonds();
+        List<Bond> highRiskBondsList = bondSessionLocal.retrieveAllHighRiskBonds();
+
+        Random rand = new Random();
+        if (p.getRiskAppetite().equals("Low")) {
+            Bond b1 = lowRiskBondsList.remove(rand.nextInt(lowRiskBondsList.size()));
+            Bond b2 = lowRiskBondsList.remove(rand.nextInt(lowRiskBondsList.size()));
+            Bond b3 = lowRiskBondsList.remove(rand.nextInt(lowRiskBondsList.size()));
+            Bond b4 = mediumRiskBondsList.remove(rand.nextInt(mediumRiskBondsList.size()));
+            returnList.add(b1);
+            returnList.add(b2);
+            returnList.add(b3);
+            returnList.add(b4);
+
+        } else if (p.getRiskAppetite().equals("Medium")) {
+            Bond b1 = lowRiskBondsList.remove(rand.nextInt(lowRiskBondsList.size()));
+            Bond b2 = mediumRiskBondsList.remove(rand.nextInt(mediumRiskBondsList.size()));
+            Bond b3 = mediumRiskBondsList.remove(rand.nextInt(mediumRiskBondsList.size()));
+            Bond b4 = highRiskBondsList.remove(rand.nextInt(highRiskBondsList.size()));
+            returnList.add(b1);
+            returnList.add(b2);
+            returnList.add(b3);
+            returnList.add(b4);
+        } else {
+            Bond b1 = mediumRiskBondsList.remove(rand.nextInt(mediumRiskBondsList.size()));
+            Bond b2 = mediumRiskBondsList.remove(rand.nextInt(mediumRiskBondsList.size()));
+            Bond b3 = highRiskBondsList.remove(rand.nextInt(highRiskBondsList.size()));
+            Bond b4 = highRiskBondsList.remove(rand.nextInt(highRiskBondsList.size()));
+            returnList.add(b1);
+            returnList.add(b2);
+            returnList.add(b3);
+            returnList.add(b4);
+        }
+
+        return returnList;
+    }
+
     public String addIncome() throws ParseException, NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
 
-        
         Income i = new Income();
         i.setName(incomeActivity);
         System.out.println(incomeDate);
-            i.setDateOfIncome(new SimpleDateFormat("yyyy-MM-dd").parse(incomeDate));
+        i.setDateOfIncome(new SimpleDateFormat("yyyy-MM-dd").parse(incomeDate));
         i.setAmount(incomeAmount);
 
         long newIncomeID = incomeSessionLocal.createIncome(i);
@@ -114,6 +164,27 @@ public class bondsManagedBean implements Serializable {
         incomeAmount = 0;
 
         return "index.xhtml?faces-redirect=true";
+    }
+
+    public List<RankingBoard> getTopTenRanking() {
+        List<RankingBoard> returnList = new ArrayList<>();
+        for (Player p : playerSessionLocal.retrieveAllPlayers()) {
+            RankingBoard rb = new RankingBoard(p.getLastName() + " " + p.getFirstName());
+            for (Income i : p.getIncomeList()) {
+                rb.adjustTotalSaving(i.getAmount());
+            }
+            for (Expenses e : p.getExpensesList()) {
+                rb.adjustTotalSaving(-e.getAmount());
+            }
+            returnList.add(rb);
+        }
+
+        Collections.sort(returnList, Collections.reverseOrder());
+        if (returnList.size() > 10) {
+            return returnList.subList(0, 10);
+        } else {
+            return returnList;
+        }
     }
 
     public double getUserIncomeByMonth(int month) throws NoResultException {
@@ -135,7 +206,28 @@ public class bondsManagedBean implements Serializable {
         return incomeOfTheMonth;
     }
 
-    public double getUserExpensesByMonth(String type) throws NoResultException {
+    public double getUserExpensesByType(String type) throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
+        Player p1 = playerSessionLocal.retrievePlayerById(pid);
+
+        double totalExpenses = 0;
+
+        List<Expenses> playerExpenses = p1.getExpensesList();
+        for (Expenses e : playerExpenses) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(e.getDateTransact());
+            int checkYear = cal.get(Calendar.YEAR);
+            cal.setTime(new java.util.Date());
+            int currentYear = cal.get(Calendar.YEAR);
+            if ((checkYear == currentYear) && (e.getType().equals(type))) {
+                totalExpenses += e.getAmount();
+            }
+        }
+        return totalExpenses;
+    }
+
+    public double getUserExpensesByMonth(int month) throws NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         Long pid = (Long) context.getApplication().createValueBinding("#{authenticationManagedBean.id}").getValue(context);
         Player p1 = playerSessionLocal.retrievePlayerById(pid);
@@ -147,13 +239,22 @@ public class bondsManagedBean implements Serializable {
             Calendar cal = Calendar.getInstance();
             cal.setTime(e.getDateTransact());
             int checkMonth = cal.get(Calendar.MONTH);
-            cal.setTime(new java.util.Date());
-            int currentMonth = cal.get(Calendar.MONTH);
-            if ((checkMonth == currentMonth) && (e.getType().equals(type))) {
+            if (checkMonth + 1 == month) {
                 totalExpenses += e.getAmount();
             }
         }
         return totalExpenses;
+    }
+
+    public String convertDateToString(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 2);
+        Date modifiedDate = cal.getTime();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        return (dateFormat.format(modifiedDate));
     }
 
     public bondsManagedBean() {

@@ -94,4 +94,11 @@ public class ExpensesSession implements ExpensesSessionLocal {
         }
     }
 
+    @Override
+    public List<Expenses> retrieveAllExpenses() {
+        Query q;
+        q = em.createQuery("SELECT e FROM Expenses e");
+        return q.getResultList();
+    }
+
 }

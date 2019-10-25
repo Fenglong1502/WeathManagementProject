@@ -6,6 +6,9 @@
 package entity;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,7 +69,26 @@ public class Bond implements Serializable {
         this.interestPayable = interestPayable;
     }
 
-   
+    public String getConvertMaturityDate(){
+        return convertDateToString(maturityDate);
+    }
+    
+    public String getConvertIssueDate(){
+        return convertDateToString(issueDate);
+    }
+    
+    
+    public String convertDateToString(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, 2);
+        Date modifiedDate = cal.getTime();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        return (dateFormat.format(modifiedDate));
+    }
+
 
     public Long getBondID() {
         return bondID;

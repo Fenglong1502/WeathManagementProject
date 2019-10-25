@@ -18,6 +18,8 @@ import javax.ejb.Local;
 public interface IncomeSessionLocal {
 
     public List<Income> retrieveUserIncome(Long userId) throws NoResultException;
+    
+    public List<Income> retrieveAllIncome();
 
     public Income retrieveIncomeById(Long id) throws NoResultException;
 

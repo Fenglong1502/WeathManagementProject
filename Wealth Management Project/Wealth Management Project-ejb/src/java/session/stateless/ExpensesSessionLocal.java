@@ -18,6 +18,8 @@ import javax.ejb.Local;
 public interface ExpensesSessionLocal {
 
     public List<Expenses> retrieveUserExpenses(Long userId) throws NoResultException;
+    
+    public List<Expenses> retrieveAllExpenses();
 
     public Expenses retrieveExpenseById(Long id) throws NoResultException;
 
