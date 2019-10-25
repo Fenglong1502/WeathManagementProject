@@ -54,25 +54,91 @@ public class Player implements Serializable {
     private List<Bond> recommendedBonds;
 
     public Player() {
+        expensesList = new ArrayList();
+        incomeList = new ArrayList();
+        rewardsList = new ArrayList();
+        trackedBonds = new ArrayList();
+        recommendedBonds = new ArrayList();
     }
 
     public Player(String email, String password) {
         this.email = email;
         this.password = password;
-        this.joinedDate = new Date();
-        this.points = 0;
-        this.firstName = "mr";
-        this.lastName = "tester";
-        this.accountStatus = true;
-        this.gender = "gay";
-        this.lastLogin = new Date();
-        this.consecutiveLogin = 1;
-        this.riskAppetite = "";
-        this.expensesList = new ArrayList<Expenses>();
-        this.incomeList = new ArrayList<Income>();
-        this.rewardsList = new ArrayList<Rewards>();
-        this.trackedBonds = new ArrayList<Bond>();
-        this.recommendedBonds = new ArrayList<Bond>();
+//        this.joinedDate = new Date();
+//        this.points = 0;
+//        this.firstName = "mr";
+//        this.lastName = "tester";
+//        this.accountStatus = true;
+//        this.gender = "gay";
+//        this.lastLogin = new Date();
+//        this.consecutiveLogin = 1;
+//        this.riskAppetite = "";
+//        this.expensesList = new ArrayList<Expenses>();
+//        this.incomeList = new ArrayList<Income>();
+//        this.rewardsList = new ArrayList<Rewards>();
+//        this.trackedBonds = new ArrayList<Bond>();
+//        this.recommendedBonds = new ArrayList<Bond>();
+    }
+
+    public Player(String email, String password, Date joinedDate, int points, String firstName, String lastName, boolean accountStatus, String gender, Date lastLogin, int consecutiveLogin, String riskAppetite, List<Expenses> expensesList, List<Income> incomeList, List<Rewards> rewardsList, List<Bond> trackedBonds, List<Bond> recommendedBonds) {
+        this.email = email;
+        this.password = password;
+        this.joinedDate = joinedDate;
+        this.points = points;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountStatus = accountStatus;
+        this.gender = gender;
+        this.lastLogin = lastLogin;
+        this.consecutiveLogin = consecutiveLogin;
+        this.riskAppetite = riskAppetite;
+        this.expensesList = expensesList;
+        this.incomeList = incomeList;
+        this.rewardsList = rewardsList;
+        this.trackedBonds = trackedBonds;
+        this.recommendedBonds = recommendedBonds;
+    }
+
+   
+
+    public void addExpenses(Expenses e) throws Exception {
+        if (e != null && !this.getExpensesList().contains(e)) {
+            this.getExpensesList().add(e);
+        } else {
+            throw new Exception("Expenses already added to Player");
+        }
+    }
+
+    public void addIncome(Income i) throws Exception {
+        if (i != null && !this.getIncomeList().contains(i)) {
+            this.getIncomeList().add(i);
+        } else {
+            throw new Exception("Income already added to Player");
+        }
+    }
+
+    public void addRewards(Rewards r) throws Exception {
+        if (r != null && !this.getRewardsList().contains(r)) {
+            this.getRewardsList().add(r);
+        } else {
+            throw new Exception("Rewards already added to Player");
+        }
+    }
+
+    public void addTrackedBond(Bond b) throws Exception {
+        if (b != null && !this.getTrackedBonds().contains(b)) {
+            this.getTrackedBonds().add(b);
+        } else {
+            throw new Exception("Bonds already added to Player's Tracked List");
+        }
+    }
+
+    public void addRecommendedBonds(Bond b) throws Exception {
+        if (b != null && !this.getRecommendedBonds().contains(b)) {
+            this.getRecommendedBonds().add(b);
+        } else {
+            throw new Exception("Bonds already added to Player's Recommended List");
+        }
     }
 
     public Long getPlayerID() {
@@ -178,7 +244,7 @@ public class Player implements Serializable {
     public void setExpensesList(List<Expenses> expensesList) {
         this.expensesList = expensesList;
     }
-    
+
     public List<Income> getIncomeList() {
         return incomeList;
     }

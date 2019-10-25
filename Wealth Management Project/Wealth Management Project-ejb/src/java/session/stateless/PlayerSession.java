@@ -5,9 +5,13 @@
  */
 package session.stateless;
 
+import entity.Expenses;
+import entity.Income;
 import entity.Player;
 import error.NoResultException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,7 +30,7 @@ public class PlayerSession implements PlayerSessionLocal {
 
     public PlayerSession() {
     }
-    
+
     @Override
     public Player createPlayer(Player player) throws NoResultException {
         try {
@@ -47,13 +51,13 @@ public class PlayerSession implements PlayerSessionLocal {
             throw new NoResultException("An unexpected error has occured: " + ex.getMessage());
         }
     }
-    
+
     @Override
     public List<Player> retrieveAllPlayers() {
         Query query = em.createQuery("SELECT p FROM Player p ORDER BY p.playerID ASC");
         return query.getResultList();
     }
-    
+
     @Override
     public Player retrievePlayerById(Long playerId) throws NoResultException {
         Player player = em.find(Player.class, playerId);
@@ -63,7 +67,7 @@ public class PlayerSession implements PlayerSessionLocal {
             throw new NoResultException("Player ID " + playerId + " does not exist!");
         }
     }
-    
+
     @Override
     public void updatePlayer(Player player) throws NoResultException {
         try {
@@ -96,6 +100,59 @@ public class PlayerSession implements PlayerSessionLocal {
                     && ex.getCause().getCause().getClass().getSimpleName().equals("MySQLIntegrityConstraintViolationException")) {
                 throw new NoResultException("Player already exists!\n");
             }
+        }
+    }
+
+    @Override
+    public boolean login(Player p) {
+        Query q = em.createQuery("SELECT p FROM Player p WHERE "
+                + "LOWER(p.email) = :email");
+        q.setParameter("email", p.getEmail().toLowerCase());
+
+        if (!q.getResultList().isEmpty()) {
+            Player checkP = (Player) q.getResultList().get(0);
+            if (checkP.getPassword().equals(p.getPassword())) {
+                return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Player getPlayerByEmail(String email) throws NoResultException {
+        Query q;
+        q = em.createQuery("SELECT p FROM Player p WHERE "
+                + "LOWER(p.email) = :email");
+        q.setParameter("email", email.toLowerCase());
+
+        if (!q.getResultList().isEmpty()) {
+            return (Player) q.getResultList().get(0);
+        } else {
+            throw new NoResultException("Player not found.");
+        }
+    }
+
+    @Override
+    public void addExpenses(long id, Expenses e) {
+        Player p = em.find(Player.class, id);
+        try {
+            p.addExpenses(e);
+            em.flush();
+        } catch (Exception ex) {
+            Logger.getLogger(PlayerSession.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void addIncome(long id, Income i) {
+        Player p = em.find(Player.class, id);
+        try {
+            p.addIncome(i);
+            em.flush();
+        } catch (Exception ex) {
+            Logger.getLogger(PlayerSession.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
