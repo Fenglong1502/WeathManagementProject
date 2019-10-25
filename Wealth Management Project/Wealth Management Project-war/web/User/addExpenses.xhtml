@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <body>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+        <link rel="stylesheet" href="/resources/demos/style.css"/>
 
         <ui:composition template="./layout/default.xhtml">
             <ui:define name="content">
@@ -20,16 +25,21 @@
                             <div class="row">
                                 <div class="col-4">.</div>
                                 <div class="col-4">
-                                    <form class="form-horizontal">
+                                    <h:form class="form-horizontal">
                                         <div class="box-body">
                                             <div class="form-group">
-                                                <label>Expense Activity</label>
-                                                <select class="form-control">
-                                                    <option>Food</option>
-                                                    <option>Transport</option>
-                                                    <option>Entertainment</option>
-                                                    <option>Other</option>
-                                                </select>
+                                                <span class="txt1 p-b-11">
+                                                    Expense Activity
+                                                </span>
+                                                <div class="wrap-input100 validate-input m-b-36 form-group" style="border:none" data-validate = " Gender is required" >
+                                                    <h:selectOneMenu value="#{bondsManagedBean.expenseActivity}" class="form-control input100" style="color:black">  
+                                                        <f:selectItem itemValue="Food" itemLabel="Food" />
+                                                        <f:selectItem itemValue="Transport" itemLabel="Transport" />
+                                                        <f:selectItem itemValue="Entertainment" itemLabel="Entertainment" />
+                                                        <f:selectItem itemValue="Other" itemLabel="Other" />
+                                                    </h:selectOneMenu>
+                                                    <span class="focus-input100"></span>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Date: </label>
@@ -37,10 +47,11 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                                                     </div>
-                                                    <input type="text" class="form-control pull-right" id="datepicker" />
+                                                    <h:inputText class="form-control pull-right" value="#{bondsManagedBean.date}" id="datepicker" required="true"/>
                                                 </div>
                                                 <!-- /.input group -->
                                             </div>
+
                                             <!-- /.input group -->
                                             <div class="form-group">
                                                 <label>Expense Amount: </label>
@@ -48,17 +59,17 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">$</span>
                                                     </div>
-                                                    <input type="text" class="form-control" />
+                                                    <h:inputText class="form-control" value="#{bondsManagedBean.expenseAmount}" id="expenseAmount" required="true"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- /.box-body -->
                                         <div class="box-footer">
-                                            <button type="submit" class="btn btn-default">Cancel</button>
-                                            <button type="submit" class="btn btn-info pull-right">Add</button>
+                                            <a href="index.xhtml" class="btn btn-default">Cancel</a>
+                                            <h:commandButton class="btn btn-info pull-right" value="Add" action="#{bondsManagedBean.addExpenses()}"></h:commandButton>
                                         </div>
                                         <!-- /.box-footer -->
-                                    </form>
+                                    </h:form>
                                 </div>
                                 <div class="col-4"></div>
                             </div>
@@ -66,6 +77,13 @@
                         </div>
                     </div>
                 </section>
+                <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $("#datepicker").datepicker();
+                    });
+                </script>
             </ui:define>
         </ui:composition>
     </body>

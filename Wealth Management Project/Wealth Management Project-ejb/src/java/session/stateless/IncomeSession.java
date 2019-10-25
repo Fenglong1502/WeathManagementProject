@@ -24,9 +24,9 @@ public class IncomeSession implements IncomeSessionLocal {
     @PersistenceContext(unitName = "Wealth_Management_Project-ejbPU")
     private EntityManager em;
 
-    public IncomeSession(){
+    public IncomeSession() {
     }
-    
+
     @Override
     public List<Income> retrieveUserIncome(Long userId) throws NoResultException {
         try {
@@ -36,21 +36,20 @@ public class IncomeSession implements IncomeSessionLocal {
 
             return player.getIncomeList();
         } catch (Exception ex) {
-            throw new NoResultException("Player's income cannot be retrieved: "+ex);
+            throw new NoResultException("Player's income cannot be retrieved: " + ex);
         }
     }
-    
+
     @Override
     public Income retrieveIncomeById(Long id) throws NoResultException {
-        try {
-            Query query = em.createQuery("SELECT i FROM Income i WHERE i.incomeID =: inIncomeID");
-            query.setParameter("inIncomeID", id);
-            return (Income) query.getSingleResult();
-        } catch (Exception ex) {
-            throw new NoResultException("Income "+id+"cannot be retrieved: "+ex);
+        Income income = em.find(Income.class, id);
+        if (income != null) {
+            return income;
+        } else {
+            throw new javax.persistence.NoResultException("Not found");
         }
     }
-    
+
     @Override
     public Long createIncome(Income newIncome) {
         newIncome.setDateOfIncome(new java.util.Date());
@@ -59,10 +58,10 @@ public class IncomeSession implements IncomeSessionLocal {
         em.refresh(newIncome);
         return newIncome.getIncomeID();
     }
-    
+
     @Override
     public void updateIncome(Income income) throws NoResultException {
-        if (income.getIncomeID()!= null) {
+        if (income.getIncomeID() != null) {
             Income updateIncome = retrieveIncomeById(income.getIncomeID());
             updateIncome.setAmount(income.getAmount());
             updateIncome.setDateOfIncome(income.getDateOfIncome());
@@ -73,7 +72,7 @@ public class IncomeSession implements IncomeSessionLocal {
             throw new NoResultException("No such income to update. ");
         }
     }
-    
+
     @Override
     public void deleteIncome(Long id) throws NoResultException {
         if (id != null) {
@@ -85,5 +84,4 @@ public class IncomeSession implements IncomeSessionLocal {
         }
     }
 
-    
 }

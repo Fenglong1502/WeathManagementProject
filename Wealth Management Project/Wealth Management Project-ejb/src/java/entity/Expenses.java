@@ -31,6 +31,10 @@ public class Expenses implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateTransact;
 
+    public Expenses(){
+        
+    }
+    
     public Long getExpensesID() {
         return expensesID;
     }

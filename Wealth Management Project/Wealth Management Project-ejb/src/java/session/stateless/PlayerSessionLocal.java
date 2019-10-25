@@ -5,6 +5,8 @@
  */
 package session.stateless;
 
+import entity.Expenses;
+import entity.Income;
 import entity.Player;
 import error.NoResultException;
 import java.util.List;
@@ -24,5 +26,14 @@ public interface PlayerSessionLocal {
     public Player retrievePlayerById(Long playerId) throws NoResultException;
 
     public void updatePlayer(Player player) throws NoResultException;
+    
+    public boolean login(Player p);
+    
+    public Player getPlayerByEmail(String email) throws NoResultException;
+    
+    public void addExpenses(long id , Expenses e);
+    
+    public void addIncome(long id , Income i);
+    
     
 }

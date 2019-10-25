@@ -36,33 +36,41 @@ public class ExpensesSession implements ExpensesSessionLocal {
 
             return player.getExpensesList();
         } catch (Exception ex) {
-            throw new NoResultException("Player's expenses cannot be retrieved: "+ex);
+            throw new NoResultException("Player's expenses cannot be retrieved: " + ex);
         }
     }
-    
+
     @Override
     public Expenses retrieveExpenseById(Long id) throws NoResultException {
-        try {
-            Query query = em.createQuery("SELECT e FROM Expenses e WHERE e.expensesID =: inExpenseID");
-            query.setParameter("inExpenseID", id);
-            return (Expenses) query.getSingleResult();
-        } catch (Exception ex) {
-            throw new NoResultException("Expense "+id+"cannot be retrieved: "+ex);
+//        try {
+//            Query query = em.createQuery("SELECT e FROM Expenses e WHERE e.expensesID =: inExpenseID");
+//            query.setParameter("inExpenseID", id);
+//            return (Expenses) query.getSingleResult();
+//        } catch (Exception ex) {
+//            throw new NoResultException("Expense "+id+"cannot be retrieved: "+ex);
+//        }
+
+        Expenses expense = em.find(Expenses.class, id);
+
+        if (expense != null) {
+            return expense;
+        } else {
+            throw new javax.persistence.NoResultException("Not found");
         }
     }
-    
+
     @Override
     public Long createExpenses(Expenses newExpenses) {
-        newExpenses.setDateTransact(new java.util.Date());
+//        newExpenses.setDateTransact(new java.util.Date());
         em.persist(newExpenses);
         em.flush();
         em.refresh(newExpenses);
         return newExpenses.getExpensesID();
     }
-    
+
     @Override
     public void updateExpenses(Expenses expense) throws NoResultException {
-        if (expense.getExpensesID()!= null) {
+        if (expense.getExpensesID() != null) {
             Expenses updateExpenses = retrieveExpenseById(expense.getExpensesID());
             updateExpenses.setAmount(expense.getAmount());
             updateExpenses.setDateTransact(expense.getDateTransact());
@@ -74,7 +82,7 @@ public class ExpensesSession implements ExpensesSessionLocal {
             throw new NoResultException("No such expense to update. ");
         }
     }
-    
+
     @Override
     public void deleteExpense(Long id) throws NoResultException {
         if (id != null) {
@@ -85,5 +93,5 @@ public class ExpensesSession implements ExpensesSessionLocal {
             throw new NoResultException("Expense cannot be deleted. ");
         }
     }
-    
+
 }
