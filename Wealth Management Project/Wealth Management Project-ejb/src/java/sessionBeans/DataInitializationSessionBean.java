@@ -55,11 +55,13 @@ public class DataInitializationSessionBean {
     private RewardsSessionLocal rewardSessionLocal;
 
     @PostConstruct
-    public void postConstruct() {
+    public void postConstruct(){
         if (em.find(Player.class, 1l) == null) {
             try {
                 initializeData();
             } catch (ParseException ex) {
+                Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoResultException ex) {
                 Logger.getLogger(DataInitializationSessionBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -68,11 +70,10 @@ public class DataInitializationSessionBean {
     public DataInitializationSessionBean() {
     }
 
-    private void initializeData() throws ParseException {
+    private void initializeData() throws ParseException, NoResultException {
         //Initialise new user
-        Player p1 = new Player("test@test.com", encryptPassword("123456"))
-        
-        
+        Player p1 = new Player("test@test.com", encryptPassword("123456"));
+        playerSessionLocal.createPlayer(p1);
         
         Bond b1 = new Bond("SG6SG8000006", "Jurong Shipyard Pte Ltd", "SMMSP 2.950% 10Sep2021 Corp (SGD)", "SISEEKER", "N.R", 2.95, "SGD", 250000, new SimpleDateFormat("dd/MM/yyyy").parse("09/01/20-19"), 2.95, new SimpleDateFormat("dd/MM/yyyy").parse("09/01/2019"), 2.993, "", "", 0);
         Bond b2 = new Bond("XS1725308859", "Times Property Holdings Limited", "TPHL 6.600% 02Mar2023 Corp (USD)", "HYSEEKER", "B1", 6.6, "USD", 1200000, new SimpleDateFormat("dd/MM/yyyy").parse("09/01/20-19"), 6.625, new SimpleDateFormat("dd/MM/yyyy").parse("09/01/2019"), 7.229196, "", "", 0);

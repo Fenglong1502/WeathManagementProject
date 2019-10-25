@@ -77,6 +77,8 @@ public class RewardsSession implements RewardsSessionLocal {
                 rewardToUpdate.setPoints(rewardToUpdate.getPoints());
                 rewardToUpdate.setExpiredDate(rewardToUpdate.getExpiredDate());
                 rewardToUpdate.setIsClaimed(rewardToUpdate.isIsClaimed());
+                em.flush();
+                em.refresh(rewardToUpdate);
             } else {
                 throw new NoResultException("ID not provided for rewards information to be updated");
             }
