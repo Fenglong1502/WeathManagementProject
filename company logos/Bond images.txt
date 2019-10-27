@@ -1,0 +1,29 @@
+SG7X40961493	SP PowerAssets Ltd
+USY79985AD29	Singapore Telecommunications Limited
+XS1226628961	CLP Power Hong Kong Financing Ltd
+SG7V35954653	Temasek Financial (I) Limited
+US50126AAB70	Kunlun Energy Co Ltd
+XS1907273350	Bank of China Limited, Hong Kong Branch
+-XS1451270687	China Railway XunJie Co. Limited
+NY05100N	Singapore Government
+SG70I9000003	DBS Group Holdings Ltd
+
+-XS1725308859	Times Property Holdings Limited
+USQ0426RNB07	Australia & New Zealand Banking Group Ltd
+-XS1538864825	Bestgain Real Estate Lyra Ltd (Keepwell: China Vanke Co Ltd)
+-XS1602480334	Times Property Holdings Ltd
+-XS2033262895	Longfor Group Holdings Limited
+XS1023280271	Wanda Properties International Co Ltd (Keepwell: Dalian Wanda Commercial Properties)
+SG6OG5000008	Suntec REIT MTN Pte Ltd
+XS2027359756	Vietnam Prosperity Joint Stock Commercial Bank
+-XS1784286327	Fantasia Holdings Group Ltd
+-XS1960762554	Greenland Global Investment Limited
+USF43628C734	Societe Generale SA
+XS1882693036	HSBC Holdings PLC
+-XS1450327686	Minmetals Bounteous Finance (BVI) Limited
+USY8137FAP37	The Democratic Socialist Republic of Sri Lanka
+XS1795479291	China SCE Property Holdings Limited
+XS1611005957	China Aoyuan Group Limited
+
+-XS1643556670	Gemstones International Limited
+XS1725031105	Tahoe Group Global (Co.,) Limited
