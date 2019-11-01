@@ -45,15 +45,17 @@
                                                             <h2>#{b.issueCode}</h2>
                                                         </div>
                                                         <div class="row mt-2 mb-2">
-                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-3">
+                                                                <img src="../companies/#{b.issueCode}.png" width="250" height="250" alt=""/>
+                                                            </div>
                                                             <div class="col-6">
                                                                 <!--<p>Bond Name: #{b.bondName}</p>-->
                                                                 <p>Bond Issuer : #{b.bondIssuer}</p>
                                                                 <p>CR Moody: #{b.crMoodyBond}</p>
-                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Coupon : #{b.coupon}%</p>
                                                                 <p>Currency: #{b.currency}</p>
                                                                 <p>Issue Date: #{b.convertIssueDate}</p>
-                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
+                                                                <p>Minimum Amount: $#{b.minInvestmentAmount}0</p>
                                                                 <p>Maturity Date: #{b.convertMaturityDate}</p>                
 
                                                             </div>
@@ -81,20 +83,22 @@
                                                             <h2>#{b.issueCode}</h2>
                                                         </div>
                                                         <div class="row mt-2 mb-2">
-                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-3">
+                                                                <img src="../companies/#{b.issueCode}.png" width="250" height="250" alt=""/>
+                                                            </div>
                                                             <div class="col-6">
-                                                                <p>Bond Name: #{b.bondName}</p>
+                                                                <!--<p>Bond Name: #{b.bondName}</p>-->
                                                                 <p>Bond Issuer : #{b.bondIssuer}</p>
                                                                 <p>CR Moody: #{b.crMoodyBond}</p>
-                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Coupon : #{b.coupon}%</p>
                                                                 <p>Currency: #{b.currency}</p>
-                                                                <p>Issue Date: #{b.issueDate}</p>
-                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
-                                                                <p>Yeild To Maturity: #{b.yieldToMaturity}</p>                                                            
+                                                                <p>Issue Date: #{b.convertIssueDate}</p>
+                                                                <p>Minimum Amount: $#{b.minInvestmentAmount}0</p>
+                                                                <p>Maturity Date: #{b.convertMaturityDate}</p>                
+
                                                             </div>
-                                                            <div class="col-1"></div>
-                                                            <div class="col-1">
-                                                                <h2 class="text-success"> + 0.5% </h2>
+                                                            <div class="col-2">
+                                                                <h2 class="text-center"> Yield To Maturity: <br /> <span class="text-success">#{b.yieldToMaturity}% </span></h2>
                                                             </div>
                                                         </div>
                                                     </div> 
@@ -112,20 +116,22 @@
                                                             <h2>#{b.issueCode}</h2>
                                                         </div>
                                                         <div class="row mt-2 mb-2">
-                                                            <div class="col-3"><img src="images/noLogo.png" width="350" height="150" alt=""/></div>
+                                                            <div class="col-3">
+                                                                <img src="../companies/#{b.issueCode}.png" width="250" height="250" alt=""/>
+                                                            </div>
                                                             <div class="col-6">
-                                                                <p>Bond Name: #{b.bondName}</p>
+                                                                 <!--<p>Bond Name: #{b.bondName}</p>-->
                                                                 <p>Bond Issuer : #{b.bondIssuer}</p>
                                                                 <p>CR Moody: #{b.crMoodyBond}</p>
-                                                                <p>Coupon : #{b.coupon}</p>
+                                                                <p>Coupon : #{b.coupon}%</p>
                                                                 <p>Currency: #{b.currency}</p>
-                                                                <p>Issue Date: #{b.issueDate}</p>
-                                                                <p>Minimum Amount: #{b.minInvestmentAmount}</p>
-                                                                <p>Yeild To Maturity: #{b.yieldToMaturity}</p>                                                            
+                                                                <p>Issue Date: #{b.convertIssueDate}</p>
+                                                                <p>Minimum Amount: $#{b.minInvestmentAmount}0</p>
+                                                                <p>Maturity Date: #{b.convertMaturityDate}</p>                
+
                                                             </div>
-                                                            <div class="col-1"></div>
-                                                            <div class="col-1">
-                                                                <h2 class="text-success"> + 0.5% </h2>
+                                                            <div class="col-2">
+                                                                <h2 class="text-center"> Yield To Maturity: <br /> <span class="text-success">#{b.yieldToMaturity}% </span></h2>
                                                             </div>
                                                         </div>
                                                     </div> 
@@ -142,12 +148,6 @@
                     </div>
                     <!-- /.col -->
                 </div>
-
-
-
-
-
-
 
             </ui:define>
 
